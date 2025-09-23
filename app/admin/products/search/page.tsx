@@ -1,5 +1,5 @@
-import ProductList from "@/components/admin/ProductList";
-import ProductSearchForm from "@/components/admin/ProductSearchForm";
+import ProductList from "@/components/products/ProductList";
+import ProductSearchForm from "@/components/products/ProductSearchForm";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { redirect } from "next/navigation";

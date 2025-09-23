@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import ProductList from "@/components/admin/ProductList";
-import ProductSearchForm from "@/components/admin/ProductSearchForm";
-import ProductsPagination from "@/components/admin/ProductsPagination";
+import ProductList from "@/components/products/ProductList";
+import ProductSearchForm from "@/components/products/ProductSearchForm";
+import ProductsPagination from "@/components/products/ProductsPagination";
 
 //Fetch total products count
 async function fetchProductsCount() {
