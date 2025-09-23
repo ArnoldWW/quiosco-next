@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { OrderItem } from "@/types";
 import { useStore } from "@/zustand/store";
-import { formatCurrency } from "@/utils";
+import { formatCurrency, getImagePath } from "@/utils";
+import { get } from "http";
 
 type OrderItemProps = {
   item: OrderItem;
@@ -18,7 +19,7 @@ export default function OrderItemDetails({ item }: OrderItemProps) {
   return (
     <li key={item.id} className="border-b p-5 flex gap-20 items-center">
       <Image
-        src={`/products/${item.image}.jpg`}
+        src={getImagePath(item.image)}
         width={80}
         height={80}
         alt={item.name}

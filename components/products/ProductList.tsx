@@ -1,5 +1,5 @@
 import { ProductsWithCategory } from "@/app/admin/products/page";
-import { formatCurrency } from "@/utils";
+import { formatCurrency, getImagePath } from "@/utils";
 import Image from "next/image";
 
 type ProductTableProps = {
@@ -16,7 +16,7 @@ export default function ProductsList({ products }: ProductTableProps) {
         >
           <div className="flex items-center gap-3">
             <Image
-              src={`/products/${product.image}.jpg`}
+              src={getImagePath(product.image)}
               alt={product.name}
               width={40}
               height={40}

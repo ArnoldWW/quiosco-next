@@ -1,7 +1,8 @@
 import { Product } from "@/app/generated/prisma";
 import Image from "next/image";
-import { formatCurrency } from "@/utils";
+import { formatCurrency, getImagePath } from "@/utils";
 import AddProductButton from "./AddProductButton";
+import { get } from "http";
 
 type ProductCardProps = {
   product: Product;
@@ -15,7 +16,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           fill
           sizes="100%"
           className="object-cover"
-          src={`/products/${product?.image}.jpg`}
+          src={getImagePath(product?.image)}
           alt={product?.name}
         />
       </div>

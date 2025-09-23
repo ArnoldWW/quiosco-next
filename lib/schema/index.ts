@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Order } from "../../app/generated/prisma/index";
+import { Order, Product } from "../../app/generated/prisma/index";
 
 export const OrderSchema = z.object({
   name: z.string().min(1, "El nombre es obligatorio"),
@@ -29,4 +29,22 @@ export const SearchSchema = z.object({
     .string()
     .trim()
     .min(1, { message: "El término de búsqueda no puede estar vacío" })
+});
+
+export const ProductSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(1, { message: "El Nombre del Producto no puede ir vacio" }),
+  price: z
+    .string()
+    .trim()
+    .transform((value) => parseFloat(value))
+    .refine((value) => value > 0, { message: "El Precio debe ser mayor a 0" }),
+  categoryId: z
+    .string()
+    .trim()
+    .transform((value) => parseInt(value))
+    .refine((value) => value > 0, { message: "La Categoría es Obligatoria" }),
+  image: z.string().min(1, { message: "La Imagen es Obligatoria" })
 });
