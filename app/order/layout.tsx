@@ -7,7 +7,7 @@ export default function OrderLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex justify-between gap-10 h-screen overflow-hidden">
+    <div className="flex justify-between gap-5 h-screen overflow-hidden">
       <OrderSidebar />
 
       <main className="flex-1 overflow-auto p-5">{children}</main>

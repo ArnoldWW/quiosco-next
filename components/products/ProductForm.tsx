@@ -1,11 +1,18 @@
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
+import { Product } from "@/app/generated/prisma/index";
+import { getImagePath } from "@/utils";
 import ImageUpload from "./ImageUpload";
+
+type ProductFormProps = {
+  product?: Product;
+};
 
 async function fetchCategories() {
   return await prisma.category.findMany();
 }
 
-export default async function ProductForm() {
+export default async function ProductForm({ product }: ProductFormProps) {
   const categories = await fetchCategories();
   console.log("productform server");
 
@@ -18,6 +25,7 @@ export default async function ProductForm() {
           type="text"
           name="name"
           placeholder="Nombre Producto"
+          defaultValue={product?.name}
         />
       </div>
 
@@ -28,12 +36,17 @@ export default async function ProductForm() {
           id="price"
           name="price"
           placeholder="Precio Producto"
+          defaultValue={product?.price || ""}
         />
       </div>
 
       <div className="flex flex-col gap-2">
         <label htmlFor="categoryId">Categoría:</label>
-        <select id="categoryId" name="categoryId">
+        <select
+          id="categoryId"
+          name="categoryId"
+          defaultValue={product?.categoryId || ""}
+        >
           <option value="">-- Seleccione --</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
@@ -43,7 +56,7 @@ export default async function ProductForm() {
         </select>
       </div>
 
-      <ImageUpload />
+      <ImageUpload currentImage={product?.image} />
     </div>
   );
 }

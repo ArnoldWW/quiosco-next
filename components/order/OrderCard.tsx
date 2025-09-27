@@ -4,13 +4,20 @@ import { formatCurrency } from "@/utils";
 
 type OrderCardProps = {
   order: OrderWithProducts;
+  mutateOrders?: () => void;
 };
 
-export default function OrderCard({ order }: OrderCardProps) {
+export default function OrderCard({ order, mutateOrders }: OrderCardProps) {
+  const handleComplete = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    await completeOrder(formData);
+    if (mutateOrders) mutateOrders();
+  };
   return (
     <li key={order.id} className="border p-5 flex flex-col justify-center">
-      <p>FECHA DE CREACION: {order.date.toLocaleDateString()}</p>
       <p className="font-bold">ORDEN ID: {order.id}</p>
+      <p>FECHA DE CREACION: {new Date(order.date).toLocaleDateString()}</p>
       <p>CLIENTE: {order.name}</p>
       <p>ESTADO: {order.status ? "Completada" : "Pendiente"}</p>
       <p className="mt-5 font-bold">PRODUCTOS:</p>
@@ -31,7 +38,7 @@ export default function OrderCard({ order }: OrderCardProps) {
         </div>
       </dl>
 
-      <form action={completeOrder}>
+      <form onSubmit={handleComplete}>
         <input type="hidden" name="order_id" value={order.id} />
         <button
           type="submit"

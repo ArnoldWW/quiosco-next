@@ -2,7 +2,6 @@ import Image from "next/image";
 import { OrderItem } from "@/types";
 import { useStore } from "@/zustand/store";
 import { formatCurrency, getImagePath } from "@/utils";
-import { get } from "http";
 
 type OrderItemProps = {
   item: OrderItem;

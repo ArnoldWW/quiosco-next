@@ -1,6 +1,7 @@
+import Link from "next/link";
+import Image from "next/image";
 import { ProductsWithCategory } from "@/app/admin/products/page";
 import { formatCurrency, getImagePath } from "@/utils";
-import Image from "next/image";
 
 type ProductTableProps = {
   products: ProductsWithCategory;
@@ -25,7 +26,12 @@ export default function ProductsList({ products }: ProductTableProps) {
             {product.name} ({product.category.name}) -{" "}
             {formatCurrency(product.price)}
           </div>
-          <button className="text-blue-500 hover:underline">Editar</button>
+          <Link
+            href={`/admin/products/${product.id}/edit`}
+            className="text-blue-500 hover:underline"
+          >
+            Editar
+          </Link>
         </li>
       ))}
     </ul>

@@ -2,7 +2,6 @@ import { Product } from "@/app/generated/prisma";
 import Image from "next/image";
 import { formatCurrency, getImagePath } from "@/utils";
 import AddProductButton from "./AddProductButton";
-import { get } from "http";
 
 type ProductCardProps = {
   product: Product;
@@ -10,8 +9,8 @@ type ProductCardProps = {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="flex flex-col p-5">
-      <div className="relative w-full h-60">
+    <div className="flex flex-col">
+      <div className="relative w-full h-80">
         <Image
           fill
           sizes="100%"

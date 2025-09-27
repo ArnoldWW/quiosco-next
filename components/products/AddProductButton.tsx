@@ -13,7 +13,7 @@ export default function AddProductButton({ product }: AddProductButtonProps) {
   return (
     <button
       type="button"
-      className="border cursor-pointer p-3 hover:scale-105 transition"
+      className="btn"
       onClick={() =>
         addToOrder({ ...product, quantity: 1, subtotal: product.price })
       }
